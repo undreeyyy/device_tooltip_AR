@@ -1,26 +1,32 @@
 using UnityEngine;  // Required for Unity
 
 //create a class that rotates the object on drag relative to the scrrn width
-public class RotateObjectRelativeToScreenWidth : MonoBehaviour
+public class RotateObjectHorizontallyVertically : MonoBehaviour
 {
     // Variables
     public float speed = 10f;  // Rotation speed
     private float _screenWidth;  // Width of the screen
+    private float _screenHeight;  // Height of the screen
     private Vector3 _mouseReference;  // Position of the mouse on the screen
     private Quaternion _startRotation;  // Rotation of the object
     private float _lastMouseX;  // Mouse X last frame
+    private float _lastMouseY;  // Mouse Y last frame
     private float _mouseX;  // Mouse X this frame
+    private float _mouseY;  // Mouse Y this frame
 
     void Start()
     {
         // Get the screen width
         _screenWidth = Screen.width;
+        _screenHeight = Screen.height;
     }
 
-    // Update is called once per frame relative to the screen width
+
+    // Update is called once per frame relative to the screen
     void Update()
     {
-        // Check if the mouse is pressed
+
+         // Check if the mouse is pressed
         if (Input.GetMouseButtonDown(0))
         {
             // Set the mouse reference
@@ -32,15 +38,19 @@ public class RotateObjectRelativeToScreenWidth : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             _lastMouseX = Input.mousePosition.x;
+            _lastMouseY = Input.mousePosition.y;
         }
         else if (Input.GetMouseButton(0))
         {
             // Get the mouse position
             _mouseX = Input.mousePosition.x;
-            // Calculate the rotation
-            float rotation = (_mouseX - _mouseReference.x) * speed;
-            // Rotate the object
-            transform.rotation = Quaternion.Euler(_startRotation.eulerAngles.x, _startRotation.eulerAngles.y - rotation, _startRotation.eulerAngles.z);
+            _mouseY = Input.mousePosition.y;
+            // Calculate rotation based on the mouse position
+            float rotationX = (_mouseX - _lastMouseX) * speed;
+            float rotationY = (_mouseY - _lastMouseY) * speed;
+
+            transform.rotation = _startRotation * Quaternion.Euler(_startRotation.eulerAngles.x + rotationY, _startRotation.eulerAngles.y - rotationX, _startRotation.eulerAngles.z);
         }
+        
     }
 }
