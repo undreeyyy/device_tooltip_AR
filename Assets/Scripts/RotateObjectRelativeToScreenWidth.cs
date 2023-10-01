@@ -25,32 +25,35 @@ public class RotateObjectHorizontallyVertically : MonoBehaviour
     // Update is called once per frame relative to the screen
     void Update()
     {
-
-         // Check if the mouse is pressed
-        if (Input.GetMouseButtonDown(0))
+        // Check if the user uses the mouse or touch input
+        if (Input.touchCount == 1)
         {
-            // Set the mouse reference
-            _mouseReference = Input.mousePosition;
-            // Set the rotation reference
-            _startRotation = transform.rotation;
+            // Check if the mouse is pressed
+            if (Input.GetMouseButtonDown(0))
+            {
+                // Set the mouse reference
+                _mouseReference = Input.mousePosition;
+                // Set the rotation reference
+                _startRotation = transform.rotation;
+            }
+            // stores the last mouse position so the object wont rotate back to its original position  
+            else if (Input.GetMouseButtonUp(0))
+            {
+                _lastMouseX = Input.mousePosition.x;
+                _lastMouseY = Input.mousePosition.y;
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                //screen width and height totals to 360 degrees of rotation
+                // Get the mouse position
+                _mouseX = Input.mousePosition.x;
+                _mouseY = Input.mousePosition.y;
+                // Calculate the rotation
+                float rotationX = (_mouseX - _mouseReference.x) * speed * 360 / _screenWidth;
+                float rotationY = (_mouseY - _mouseReference.y) * speed * 360 / _screenHeight;
+                // Rotate the object
+                transform.rotation = Quaternion.Euler(_startRotation.eulerAngles.x - rotationY, _startRotation.eulerAngles.y + rotationX, 0);
+            }
         }
-        // stores the last mouse position so the object wont rotate back to its original position  
-        else if (Input.GetMouseButtonUp(0))
-        {
-            _lastMouseX = Input.mousePosition.x;
-            _lastMouseY = Input.mousePosition.y;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            // Get the mouse position
-            _mouseX = Input.mousePosition.x;
-            _mouseY = Input.mousePosition.y;
-            // Calculate rotation based on the mouse position
-            float rotationX = (_mouseX - _lastMouseX) * speed;
-            float rotationY = (_mouseY - _lastMouseY) * speed;
-
-            transform.rotation = _startRotation * Quaternion.Euler(_startRotation.eulerAngles.x + rotationY, _startRotation.eulerAngles.y - rotationX, _startRotation.eulerAngles.z);
-        }
-        
     }
 }
