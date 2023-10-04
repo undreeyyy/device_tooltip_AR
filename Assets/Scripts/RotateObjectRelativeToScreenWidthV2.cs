@@ -1,7 +1,7 @@
 using UnityEngine;  // Required for Unity
 
 //create a class that rotates the object on drag relative to the scrrn width
-public class RotateObjectHorizontallyVertically : MonoBehaviour
+public class RotateObjectHorizontallyVerticallyV2 : MonoBehaviour
 {
     // Variables
     public float speed = 1f;  // Rotation speed
