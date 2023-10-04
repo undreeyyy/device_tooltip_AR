@@ -38,7 +38,7 @@ public class PinchZoom : MonoBehaviour
             float deltaMagnitudeDiff = touchDeltaMag - prevTouchDeltaMag;
 
             //zoom in when pinching in and zooms out when pinching out on the object
-            transform.localScale += Vector3.one * deltaMagnitudeDiff * 0.01f;
+            transform.localScale += Vector3.one * deltaMagnitudeDiff * 0.0001f;
         }
         //if the user is not pinching
         else

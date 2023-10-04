@@ -1,9 +1,11 @@
-using UnityEngine;  // Required for Unity
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//create a class that rotates the object on drag relative to the scrrn width
-public class RotateObjectHorizontallyVertically : MonoBehaviour
+public class RotateObject : MonoBehaviour
 {
-    // Variables
+    //rotates the object when the user drags their finger across the screen
+    //variables
     public float speed = 1f;  // Rotation speed
     private float _screenWidth;  // Width of the screen
     private float _screenHeight;  // Height of the screen
@@ -12,6 +14,7 @@ public class RotateObjectHorizontallyVertically : MonoBehaviour
     private float _lastMouseX;  // Mouse X last frame
     private float _lastMouseY;  // Mouse Y last frame
     private float _mouseX;  // Mouse X this frame
+
     private float _mouseY;  // Mouse Y this frame
 
     void Start()
@@ -27,28 +30,23 @@ public class RotateObjectHorizontallyVertically : MonoBehaviour
         _mouseReference = Input.mousePosition;
     }
 
-
-    // Update is called once per frame relative to the screen
+    //updates per frame
     void Update()
     {
-        // Check if the user uses the mouse or touch input
         if (Input.touchCount == 1)
         {
-            // Check if the mouse is pressed
             if (Input.GetMouseButtonDown(0))
             {
                 //sets the rotation of the object to the last rotation of the object
                 transform.rotation = _objectRotation;
             }
-            // stores the last mouse position so the object wont rotate back to its original position  
             else if (Input.GetMouseButtonUp(0))
             {
                 //set the last mouse position to the current mouse position
                 _lastMouseX = _mouseX;
                 _lastMouseY = _mouseY;
             }
-            //rotates relative to the screen width (360 degrees) and screen height(180 degrees)
-            else if (Input.GetMouseButton(0))
+            else
             {
                 //get the mouse position on the screen
                 _mouseX = Input.mousePosition.x;
@@ -58,27 +56,22 @@ public class RotateObjectHorizontallyVertically : MonoBehaviour
                 if (_lastMouseX != _mouseX || _lastMouseY != _mouseY)
                 {
                     //get the difference between the mouse position and the last frame
-                    float deltaX = _lastMouseX - _mouseX;
-                    float deltaY = _lastMouseY - _mouseY;
+                    float deltaX = _mouseX - _lastMouseX;
+                    float deltaY = _mouseY - _lastMouseY;
 
-                    //screen width and height totals to 360 degrees of rotation
-                    float rotationX = deltaX * speed * 360 / _screenWidth;
-                    float rotationY = deltaY * speed * 180 / _screenHeight;
-
-                    // Rotate the object
-                    transform.rotation = Quaternion.Euler(_objectRotation.eulerAngles.x + rotationY, _objectRotation.eulerAngles.y + rotationX, 0);
-
-                    //stores the rotation of the object
-                    _objectRotation = transform.rotation;
+                    //rotate the object on the x axis
+                    transform.Rotate(Vector3.up * deltaX * speed, Space.World);
+                    //rotate the object on the y axis
+                    transform.Rotate(Vector3.left * deltaY * speed, Space.World);
 
                     //set the last mouse position to the current mouse position
                     _lastMouseX = _mouseX;
                     _lastMouseY = _mouseY;
 
+                    //stores the rotation of the object
+                    _objectRotation = transform.rotation;
                 }
-
             }
-
         }
     }
 }

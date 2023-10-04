@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7272440240342386487}
-  - component: {fileID: 7088056209150761815}
-  - component: {fileID: 3987664975811660724}
   m_Layer: 0
   m_Name: Sketchfab_model
   m_TagString: Untagged
@@ -28,37 +26,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7070985, y: 0.003426537, z: -0.003426537, w: -0.70709854}
   m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.0162, y: 0.0162, z: 0.0162}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 793861817588598709}
   m_Father: {fileID: 8889231953227033752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7088056209150761815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958080201420865934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f1485f459319a940a8bf751404e148b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3987664975811660724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958080201420865934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e08ff5906f047429f40215e06ec48d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
 --- !u!1 &1445670985175532403
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,6 +585,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8889231953227033752}
+  - component: {fileID: 4252395454304793149}
+  - component: {fileID: 4815468413756897252}
+  - component: {fileID: 8009427682647484754}
+  - component: {fileID: 5966844695922276339}
   m_Layer: 0
   m_Name: DualShock_4
   m_TagString: Untagged
@@ -628,13 +605,67 @@ Transform:
   m_GameObject: {fileID: 5625055649944350874}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.12, z: 5.62}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalPosition: {x: 0, y: -0.12, z: 3.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7272440240342386487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4252395454304793149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5625055649944350874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b61245391818746a1c4ce5caddbc01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4815468413756897252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5625055649944350874}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2b8c5aa10c3d549bd6d6b7f723a008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &8009427682647484754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5625055649944350874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87c7ed5cbc12e14992f04621cf1703b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aRTrackedImageManager: {fileID: 0}
+  realLifeSize: 100
+  realLifeTargetSize: 100
+  scale: 1
+--- !u!114 &5966844695922276339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5625055649944350874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb0d7b81d4296345bc0224b455e32d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
 --- !u!1 &6330761641144804639
 GameObject:
   m_ObjectHideFlags: 0
